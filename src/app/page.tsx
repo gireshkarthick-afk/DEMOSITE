@@ -38,7 +38,30 @@ export default function Home() {
     window.addEventListener('scroll', scroll, { passive: true });
     return () => { observer?.disconnect(); window.removeEventListener('scroll', scroll); };
   }, []);
-  useEffect(() => { const root = document.documentElement; const selectors = ['#about > .section-label', '#about .studio-body', '#about .discipline-strip', '#explorer > .explorer-heading', '#explorer > .explorer-visual', '#services > .section-label', '#services > .section-heading', '#services .service-layout', '#services .service-row', '#projects > .section-label', '#projects > .section-heading', '#projects .gallery-heading', '#projects .gallery-stage', '#projects .gallery-thumbnails', '#approach > .section-label', '#approach > .section-heading', '#approach .process-grid > article', '#location .location-copy', '#location .location-map', '#contact .contact-copy', '#contact .contact-form', 'footer .footer-top', 'footer .footer-bottom']; const items = [...new Set(selectors.flatMap(selector => [...document.querySelectorAll<HTMLElement>(selector)]))]; items.forEach(item => item.classList.add('motion-reveal')); root.classList.add('motion-ready'); const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }), { threshold: .12, rootMargin: '0px 0px -6% 0px' }); items.forEach(item => observer.observe(item)); return () => { observer.disconnect(); root.classList.remove('motion-ready'); }; }, []);
+  useEffect(() => {
+    const root = document.documentElement;
+    const selectors = [
+      '#top .hero-copy', '#top .hero-bottom',
+      '#about > .section-label', '#about .studio-body', '#about .discipline-strip',
+      '#explorer > .explorer-heading', '#explorer > .explorer-visual',
+      '#services > .section-label', '#services > .section-heading', '#services .service-layout',
+      '#projects > .section-label', '#projects > .section-heading',
+      '#projects .project-story-top', '#projects .project-story-copy', '#projects .walkway-visual', '#projects .project-story-bottom',
+      '#projects .gallery-heading', '#projects .gallery-stage', '#projects .gallery-thumbnails',
+      '#approach > .section-label', '#approach > .section-heading', '#approach .process-grid > article',
+      '#location .location-copy', '#location .location-map',
+      '#contact .contact-copy', '#contact .contact-form',
+      'footer .footer-top', 'footer .footer-bottom',
+    ];
+    const items = [...new Set(selectors.flatMap(selector => [...document.querySelectorAll<HTMLElement>(selector)]))];
+    items.forEach(item => item.classList.add('motion-reveal'));
+    root.classList.add('motion-ready');
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      entry.target.classList.toggle('is-visible', entry.isIntersecting);
+    }), { threshold: 0, rootMargin: '-8% 0px -8% 0px' });
+    items.forEach(item => observer.observe(item));
+    return () => { observer.disconnect(); root.classList.remove('motion-ready'); };
+  }, []);
   useEffect(() => { const cursor = document.querySelector<HTMLElement>('.custom-cursor'); const finePointer = matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)'); if (!cursor || !finePointer.matches) return; const move = (event: PointerEvent) => { cursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`; cursor.classList.add('is-visible'); cursor.classList.toggle('is-hovering', !!(event.target as Element | null)?.closest('a, button, input, select, textarea, [role="button"]')); }; const leave = () => cursor.classList.remove('is-visible', 'is-hovering'); window.addEventListener('pointermove', move, { passive: true }); document.documentElement.addEventListener('pointerleave', leave); return () => { window.removeEventListener('pointermove', move); document.documentElement.removeEventListener('pointerleave', leave); }; }, []);
   useEffect(() => { const update = () => { const range = document.documentElement.scrollHeight - window.innerHeight; if (scrollProgressRef.current) scrollProgressRef.current.style.transform = `scaleX(${range > 0 ? window.scrollY / range : 0})`; }; update(); window.addEventListener('scroll', update, { passive: true }); window.addEventListener('resize', update); return () => { window.removeEventListener('scroll', update); window.removeEventListener('resize', update); }; }, []);
   useEffect(() => { if (!menuOpen) return; const escape = (e: KeyboardEvent) => { if (e.key === 'Escape') setMenuOpen(false); }; window.addEventListener('keydown', escape); return () => window.removeEventListener('keydown', escape); }, [menuOpen]);

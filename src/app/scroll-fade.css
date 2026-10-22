@@ -1,0 +1,39 @@
+/* Keep scroll reveals consistent across every section: fade only, in both directions. */
+html.motion-ready .motion-reveal {
+  opacity: 0;
+  transform: none !important;
+  clip-path: none !important;
+  transition: opacity .7s cubic-bezier(.2, .65, .25, 1) !important;
+  transition-delay: 0s !important;
+  will-change: opacity;
+}
+
+html.motion-ready .motion-reveal.is-visible {
+  opacity: 1;
+  will-change: auto;
+}
+
+html.motion-ready #explorer > .explorer-heading.motion-reveal {
+  opacity: 0;
+  transition: opacity .7s cubic-bezier(.2, .65, .25, 1) !important;
+}
+
+html.motion-ready #explorer > .explorer-heading.motion-reveal.is-visible {
+  opacity: 1;
+}
+
+/* The explorer has its own child choreography; let its parent fade as one unit. */
+html.motion-ready #explorer > .explorer-heading.motion-reveal > * {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.motion-ready .motion-reveal,
+  html.motion-ready .motion-reveal.is-visible {
+    opacity: 1;
+    transition: none !important;
+    will-change: auto;
+  }
+}
