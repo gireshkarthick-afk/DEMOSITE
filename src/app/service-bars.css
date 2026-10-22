@@ -1,0 +1,118 @@
+.services-redesign .service-list {
+  display: grid;
+  align-content: center;
+  gap: 11px;
+  border: 0;
+}
+
+.services-redesign .service-row,
+.services-redesign .service-row:first-child {
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid #d9d4ca;
+  border-left: 2px solid transparent;
+  background: #f8f7f2;
+  transition: background-color .28s ease, border-color .28s ease, transform .32s cubic-bezier(.2, .7, .2, 1), box-shadow .28s ease;
+}
+
+.services-redesign .service-row:hover {
+  border-color: #bca582;
+  border-left-color: #b28e64;
+  background: #fdfcf8;
+  box-shadow: 0 8px 24px rgb(37 46 46 / 7%);
+  transform: translateX(3px);
+}
+
+.services-redesign .service-row > button {
+  min-height: 82px;
+  gap: 16px;
+  padding: 15px 18px;
+}
+
+.services-redesign .service-row > button > small {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  border: 1px solid #d6c7b1;
+  color: #8b6e4b;
+  font-size: 9px;
+  letter-spacing: .5px;
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+
+.services-redesign .service-row h3 {
+  color: #28302d;
+  font-size: clamp(17px, 1.55vw, 21px);
+  line-height: 1.25;
+  transition: color .25s ease;
+}
+
+.services-redesign .service-row > button > svg {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  padding: 7px;
+  border: 1px solid #cfc5b6;
+  border-radius: 50%;
+  color: #8b6e4b;
+  transition: color .25s ease, background-color .25s ease, border-color .25s ease, transform .3s ease;
+}
+
+.services-redesign .service-row.service-open {
+  border-color: #303a35;
+  border-left-color: #c4a27a;
+  background: #29312d;
+  box-shadow: 0 13px 28px rgb(37 46 46 / 12%);
+}
+
+.services-redesign .service-row.service-open > button h3 { color: #f4f1e9; }
+
+.services-redesign .service-row.service-open > button > small {
+  border-color: #8e785a;
+  background: rgb(196 162 122 / 12%);
+  color: #d6bb97;
+}
+
+.services-redesign .service-row.service-open > button > svg {
+  border-color: #9c805e;
+  background: #b28e64;
+  color: #232923;
+}
+
+.services-redesign .service-detail { padding: 0 24px 24px 68px; }
+.services-redesign .service-detail > p { color: #d5d4cc; }
+
+.services-redesign .service-row.service-open .tags > span {
+  border: 1px solid #59635d;
+  background: transparent;
+  color: #d4c0a2;
+}
+
+.services-redesign .service-row.service-open .tags > span:hover {
+  border-color: #c4a27a;
+  background: rgb(196 162 122 / 12%);
+  color: #f5ecde;
+}
+
+.services-redesign .service-row > button:focus-visible {
+  position: relative;
+  z-index: 1;
+  outline-color: #b28e64;
+  outline-offset: -4px;
+}
+
+@media (max-width: 760px) {
+  .services-redesign .service-list { gap: 9px; }
+  .services-redesign .service-row > button { min-height: 74px; padding: 13px; gap: 12px; }
+  .services-redesign .service-row h3 { font-size: 17px; }
+  .services-redesign .service-detail { padding: 0 17px 20px 59px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-redesign .service-row,
+  .services-redesign .service-row > button > small,
+  .services-redesign .service-row > button > svg { transition: none; }
+  .services-redesign .service-row:hover { transform: none; }
+}

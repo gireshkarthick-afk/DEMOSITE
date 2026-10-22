@@ -100,7 +100,7 @@ export default function SteelScene(props: SceneProps) {
     {available === false ? <Fallback /> : available === null ? <div className="scene-loading">ASSEMBLING THE DETAILS<span /></div> : <SceneBoundary><Canvas shadows dpr={[1, 1.5]} orthographic camera={{ position: [12, 9, 13], zoom: 48, near: .1, far: 100 }} frameloop={inView ? 'always' : 'never'} gl={{ antialias: true, alpha: true }}>
       <FitCamera exploded={props.exploded} resetKey={props.resetKey} /><ambientLight intensity={1.7} /><directionalLight position={[5, 14, 5]} intensity={3} castShadow shadow-mapSize={[1024, 1024]} /><directionalLight position={[-8, 4, -6]} intensity={1.3} />
       <group position={[0, -2.1, 0]}><Structure wireframe={props.wireframe} exploded={props.exploded} view={props.view} /><ContactShadows position={[0, -.92, 0]} opacity={.32} scale={24} blur={2.5} far={12} resolution={256} color="#565849" /><gridHelper args={[24, 24, '#d5d6d0', '#e4e4dd']} position={[0, -.94, 0]} /></group>
-      <OrbitControls key={props.resetKey} makeDefault target={[0, props.exploded ? 1.9 : .6, 0]} enableZoom={true} minZoom={18} maxZoom={90} enablePan={false} autoRotate={props.rotating} autoRotateSpeed={.35} minPolarAngle={Math.PI / 6} maxPolarAngle={Math.PI / 2.15} />
+      <OrbitControls key={props.resetKey} makeDefault target={[0, props.exploded ? 1.9 : .6, 0]} enableZoom={true} minZoom={18} maxZoom={90} enablePan={false} autoRotate={props.rotating} autoRotateSpeed={2} minPolarAngle={Math.PI / 6} maxPolarAngle={Math.PI / 2.15} />
     </Canvas></SceneBoundary>}
   </div>;
 }

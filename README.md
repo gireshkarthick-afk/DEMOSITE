@@ -30,10 +30,10 @@ npm run typecheck
 npm run build
 ```
 
-The production build is a static export in `out/`. For the existing GitHub Pages path:
+The production build is a static export in `out/`. For the DEMOSITE GitHub Pages path:
 
 ```sh
-NEXT_PUBLIC_BASE_PATH=/kdx-drafting-services npm run build
+NEXT_PUBLIC_BASE_PATH=/DEMOSITE npm run build
 ```
 
 ## Main files

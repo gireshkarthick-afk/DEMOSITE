@@ -1,0 +1,60 @@
+/* Scroll-triggered entrances for the first three sections after the hero. */
+html.motion-ready .motion-reveal {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0) scale(.99);
+  transition: opacity .8s ease, transform .9s cubic-bezier(.18, .72, .22, 1);
+  will-change: opacity, transform;
+}
+
+html.motion-ready .motion-reveal.slide-from-left {
+  transform: translate3d(-42px, 8px, 0) scale(.99);
+}
+
+html.motion-ready .motion-reveal.slide-from-right {
+  transform: translate3d(42px, 8px, 0) scale(.99);
+}
+
+html.motion-ready .motion-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  will-change: auto;
+}
+
+#about > .section-label { transition-delay: 0s; }
+#about .studio-body { transition-delay: .1s; }
+#about .discipline-strip { transition-delay: .2s; }
+#explorer .explorer-heading { transition-delay: 0s; }
+#explorer .explorer-visual { transition-delay: .12s; }
+#services > .section-label { transition-delay: 0s; }
+#services > .section-heading { transition-delay: .08s; }
+#services .service-layout { transition-delay: .16s; }
+
+html.motion-ready #services .service-row {
+  transition-delay: 0s;
+}
+
+html.motion-ready #services .service-row:nth-child(2) { transition-delay: .08s; }
+html.motion-ready #services .service-row:nth-child(3) { transition-delay: .16s; }
+html.motion-ready #services .service-row:nth-child(4) { transition-delay: .24s; }
+
+@media (max-width: 760px) {
+  html.motion-ready .motion-reveal.slide-from-left {
+    transform: translate3d(-24px, 10px, 0) scale(.995);
+  }
+
+  html.motion-ready .motion-reveal.slide-from-right {
+    transform: translate3d(24px, 10px, 0) scale(.995);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.motion-ready .motion-reveal,
+  html.motion-ready .motion-reveal.slide-from-left,
+  html.motion-ready .motion-reveal.slide-from-right,
+  html.motion-ready .motion-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}

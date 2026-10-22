@@ -1,0 +1,72 @@
+.scroll-progress {
+  position: fixed;
+  z-index: 60;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 2px;
+  background: #c4a27a;
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.custom-cursor { display: none; }
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  body,
+  body a,
+  body button,
+  body input,
+  body select,
+  body textarea { cursor: none; }
+
+  .custom-cursor {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgb(196 162 122 / 78%);
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
+    transition: width .22s ease, height .22s ease, opacity .18s ease, background-color .22s ease;
+    will-change: transform;
+  }
+
+  .custom-cursor::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #c4a27a;
+    content: '';
+    transform: translate(-50%, -50%);
+  }
+
+  .custom-cursor.is-visible { opacity: 1; }
+
+  .custom-cursor.is-hovering {
+    width: 44px;
+    height: 44px;
+    background: rgb(196 162 122 / 10%);
+  }
+}
+
+#projects .gallery-heading.is-visible { transition-delay: .06s; }
+#projects .gallery-stage.is-visible { transition-delay: .12s; }
+#projects .gallery-thumbnails.is-visible { transition-delay: .18s; }
+#approach .process-grid > article:nth-child(2).is-visible { transition-delay: .06s; }
+#approach .process-grid > article:nth-child(3).is-visible { transition-delay: .12s; }
+#approach .process-grid > article:nth-child(4).is-visible { transition-delay: .18s; }
+#location .location-map.is-visible,
+#contact .contact-form.is-visible { transition-delay: .12s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
